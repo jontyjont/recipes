@@ -1,0 +1,13 @@
+development:
+  sessions:
+    default:
+      database: home
+      hosts:
+        - localhost:27017
+        
+production:
+  sessions:
+    default:
+      database: home
+      hosts:
+        - localhost:27017
