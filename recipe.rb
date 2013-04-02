@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'sinatra/reloader'
 require 'mongoid'
 require 'erector'
 require_relative './views'
