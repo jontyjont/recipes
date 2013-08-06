@@ -1,13 +1,13 @@
 development:
   sessions:
     default:
-      database: home
+      database: test
       hosts:
         - localhost:27017
         
 production:
   sessions:
     default:
-      database: home
+      database: test
       hosts:
         - localhost:27017

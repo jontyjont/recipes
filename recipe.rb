@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'sinatra'
-require 'sinatra/reloader'
+#require 'sinatra/reloader'
 require 'mongoid'
 require 'erector'
 require_relative './views'
@@ -14,7 +14,7 @@ include Helpers
 set :root, File.dirname(__FILE__)
 set :environment, :development
 
-also_reload (settings.root + '/views')
+#also_reload (settings.root + '/views')
 
 class Recipe
     include Mongoid::Document
