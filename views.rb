@@ -33,22 +33,28 @@ module Views
   class Index < Layout
    
     def main_area
-      
-      form :action => '/tagsearch', :method => :post do
-        label "search by tag"
-        input :name => 'tag', :id => 'tag', :type => 'text'
-        input :type => 'submit', :value => 'search'
+      div.form do
+        form :action => '/tagsearch', :method => :post do
+          label "search by tag"
+          input :name => 'tag', :id => 'tag', :type => 'text'
+          input :type => 'submit', :value => 'search'
+        end
       end
-      form :action => '/bywhosearch',:method => :post do
+      div.form do
+        form :action => '/bywhosearch',:method => :post do
          label "search by source"
-        input :name => 'tag', :id => 'tag', :type => 'text'
-        input :type => 'submit', :value => 'search'
+         input :name => 'tag', :id => 'tag', :type => 'text'
+         input :type => 'submit', :value => 'search'
       end
-      form :action => '/ingredsearch',:method => :post do
+      end
+      div.form do
+        form :action => '/ingredsearch',:method => :post do
          label "search by ingredient"
-        input :name => 'tag', :id => 'tag', :type => 'text'
-        input :type => 'submit', :value => 'search'
+         input :name => 'tag', :id => 'tag', :type => 'text'
+         input :type => 'submit', :value => 'search'
       end
+      end
+      
       div.alphabet do
         ("A".."Z").each do |alpha|
           a alpha, :href => "\/#{alpha}"
@@ -72,6 +78,8 @@ module Views
       a "Back", :href => '/' 
       text ' | '
       a "Edit",  :href => "\/edit\/#{@recipe.id}"
+      text ' | '
+      a "Compact", :href => "\/compact\/#{@recipe.id}"
       h1 @recipe.title.to_s
       div :class=>"half-left" do
         h3 "Ingredients"
@@ -115,10 +123,10 @@ module Views
         end
         br
         label "Tags"
-        input :name => 'categories', :id => 'categories', :type => 'text', :value => @recipe.categories
+        input.long :name => 'categories', :id => 'categories', :type => 'text', :value => @recipe.categories
         br
 	      label "Source"
-	      input :id =>'source',:name => 'source', :type => 'text', :value => @recipe.source
+	      input.long :id =>'source',:name => 'source', :type => 'text', :value => @recipe.source
 	      br
         div :class =>'btn' do
 	        input :type => 'submit', :value => "Update" 

@@ -22,6 +22,10 @@ module Helpers
       s.capitalize!
     end.join(" ")
   end
+
+  def compact(text)
+    text.gsub(/\r\n\r\n/, "\r\n")
+  end
     
   
 end

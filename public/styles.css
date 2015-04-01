@@ -41,13 +41,19 @@ div.alphabet {
 margin-bottom:20px;
 }
 
+div.form{
+	width:200px;
+	float:left;
+	margin-right:70px;
+}
+
 
 td {
 padding:5px;
 }
 
 input{
-width:250px;
+width:150px;
 }
 
 label {
@@ -66,6 +72,8 @@ padding:0;
 li {
 display:inline-block;
 padding:10px 20px 10px 20px;
+width:300px;!important
+height:100px;
 background-color:#A70325;
 }
 
@@ -75,8 +83,8 @@ color:#330387;
 
 .leftpic{
 float:right;
-width:125px;
-height:247px;
+width:100px;
+height:190px;
 margin-top:20px;
 margin-right:100px;
 }
@@ -84,4 +92,8 @@ margin-right:100px;
 .list{
 	width:100%;
 	background-color:#A70325;
+}
+
+input.long{
+	width:493px;
 }

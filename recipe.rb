@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'rubygems'
 require 'sinatra'
 #require 'sinatra/reloader'
@@ -47,11 +49,11 @@ get '/new' do
     New.new(:recipe => @recipe).to_html
 end
 
-post '/create' do
-  
+post '/create' do  
     @recipe = Recipe.new
     update_from_params(@recipe,params)
     @recipe.created_at = Time.now
+    @recipe.title = titleise @recipe.title
     @recipe.save
     redirect '/'
 end
@@ -86,23 +88,32 @@ post '/update' do
   end
   
   post '/bywhosearch' do
-     @recipes = Recipe.where(:source => /#{params[:tag]}/)
+     @recipes = Recipe.where(:source => /#{params[:tag]}/i)
      Index.new(:recipes => @recipes).to_html
   end
   
   post '/ingredsearch' do
-    @recipes = Recipe.where(:ingredients => /#{params[:tag]}/)
+    @recipes = Recipe.where(:ingredients => /#{params[:tag]}/i)
      Index.new(:recipes => @recipes).to_html
   end
   
   #utility
+
   
   get '/retitle' do
-    recipes = Recipe.where(:title => /(\b[^A-Z][a-z]+\b)+/ )
+    recipes = Recipe.where(:title => /(\b[^A-Z][a-z]+\b)+/i )
     recipes.each do |r|
       r.title = titleise r.title
       r.save
     end
     redirect '/'
+  end
+
+  get '/compact/:id' do
+    recipe = Recipe.where(:id => params[:id]).first
+    recipe.ingredients = compact(recipe.ingredients)
+    recipe.method = compact(compact(recipe.method))
+    recipe.save
+    redirect '/show/' + recipe.id.to_s
   end
   
